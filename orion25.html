@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Orion25 Case Study</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+    background: #0d0d0d;
+    color: #fff;
+}
+
+/* ===== HERO 區 ===== */
+.hero {
+    position: relative;
+    height: 100vh;
+    background: url('orion-main.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 黑色漸層 */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+}
+
+/* 中間文字 */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #ddd;
+}
+
+/* ===== 上方 hover label ===== */
+.hover-info {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: 0.4s ease;
+    z-index: 3;
+}
+
+.hero:hover .hover-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hover-info p {
+    max-width: 900px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #eee;
+}
+
+/* ===== 作品區 ===== */
+.section {
+    padding: 80px 8%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+/* 卡片 */
+.card {
+    background: #111;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+}
+
+/* 圖片 */
+.card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+/* 文字 */
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #fff;
+}
+
+/* ===== 回到首頁 ===== */
+.back {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.back a {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.back a:hover {
+    background: #fff;
+    color: #000;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+
+    <!-- hover 出現 -->
+    <div class="hover-info">
+        <p>
+            設計LINE宣傳圖文與文案，將「教學特點」與家長對「學習成果」的期待緊密結合。
+            成功吸引25+名學生參與。<br><br>
+            並設計並製作視覺化「Reward Wall」，將獎勵具象化，並優化集點流程。
+            成功創造極高的主動諮詢率 (95%)，並在短期內引發15位以上學生的實質兌換行為。
+        </p>
+    </div>
+
+    <!-- 主文字 -->
+    <div class="hero-content">
+        <h1>Orion 教學專案</h1>
+        <p>95% 的主動參與：用設計驅動學習動機</p>
+    </div>
+
+</section>
+
+
+<!-- 作品卡片 -->
+<section class="section">
+
+    <div class="grid">
+
+        <!-- 主視覺 -->
+        <div class="card">
+            <img src="orion-main.jpg">
+            <div class="card-content">
+                <h3>95% 的主動參與：用設計驅動學習動機</h3>
+            </div>
+        </div>
+
+        <!-- LINE 1 -->
+        <div class="card">
+            <img src="orion-line1.jpg">
+            <div class="card-content">
+                <h3>2026寒令營廣告LINE貼文</h3>
+            </div>
+        </div>
+
+        <!-- LINE 2 -->
+        <div class="card">
+            <img src="orion-line2.jpg">
+            <div class="card-content">
+                <h3>2026寒令營廣告LINE貼文</h3>
+            </div>
+        </div>
+
+        <!-- LINE 3 -->
+        <div class="card">
+            <img src="orion-line3.jpg">
+            <div class="card-content">
+                <h3>2026寒令營廣告LINE貼文</h3>
+            </div>
+        </div>
+
+        <!-- LINE 4 -->
+        <div class="card">
+            <img src="orion-line4.jpg">
+            <div class="card-content">
+                <h3>2026寒令營廣告LINE貼文</h3>
+            </div>
+        </div>
+
+        <!-- LINE 5（你新增的） -->
+        <div class="card">
+            <img src="orion-line5.jpg">
+            <div class="card-content">
+                <h3>2026寒令營廣告</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 回首頁 -->
+    <div class="back">
+        <a href="index.html">← 回到作品集</a>
+    </div>
+
+</section>
+
+</body>
+</html>
