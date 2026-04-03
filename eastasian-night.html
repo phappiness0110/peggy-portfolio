@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>East Asian Night</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+    background: #000;
+}
+
+/* ===== SLIDER ===== */
+.slider {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 上方觸發區（1/3） */
+.top-trigger {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 33%;
+    z-index: 6;
+}
+
+/* slide */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 漸層 */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.85));
+}
+
+/* ===== 上方敘述 ===== */
+.info {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 50px 20px;
+    text-align: center;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: 0.5s ease;
+    z-index: 5;
+}
+
+.top-trigger:hover + .info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info p {
+    max-width: 900px;
+    margin: auto;
+    color: #eee;
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+/* ===== 箭頭 ===== */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 22px;
+}
+
+.arrow:hover {
+    background: #fff;
+}
+
+.left { left: 30px; }
+.right { right: 30px; }
+
+/* ===== dots ===== */
+.dots {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    background: #888;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #fff;
+}
+
+/* ===== 回首頁 ===== */
+.back-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 20;
+
+    padding: 12px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+
+    background: rgba(255,255,255,0.9);
+    color: #000;
+
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #fff;
+    transform: translateY(-3px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="slider">
+
+    <!-- 上方觸發區 -->
+    <div class="top-trigger"></div>
+
+    <!-- 文字 -->
+    <div class="info">
+        <p>
+        籌備師大東亞系年度大型公演，面臨資源、預算與時間的三重挑戰。
+        擔任戲劇統籌與編劇領導，創作具系所特色且能觸動觀眾的演出。<br><br>
+
+        引領團隊產出原創劇本，設計「魔幻設定」增強舞台張力，
+        並負責時程規劃與預算控管，確保多層次轉場與整體演出品質。
+        最終吸引 200+ 名觀眾參與。<br><br>
+
+        ———<br><br>
+
+        一間擁有魔幻設定的神秘空間，
+        溝通唯一的媒介，是牆上那塊巨大的黑板。<br><br>
+
+        主角品儀困於情執，冠佑困於平庸。
+        在無聲的文字交換中，兩人逐漸解開內心的結。<br><br>
+
+        品儀用衝勁點燃冠佑的熱情，
+        冠佑以理性拓寬品儀的愛情觀。<br><br>
+
+        最終，
+        品儀找回自我主體性，
+        冠佑重新掌握人生方向，<br><br>
+
+        共同印證：「人生隨時存在可能性」
+        </p>
+    </div>
+
+    <!-- 8張圖片 -->
+    <div class="slide active"><img src="ea1.jpg"></div>
+    <div class="slide"><img src="ea2.jpg"></div>
+    <div class="slide"><img src="ea3.jpg"></div>
+    <div class="slide"><img src="ea4.jpg"></div>
+    <div class="slide"><img src="ea5.jpg"></div>
+    <div class="slide"><img src="ea6.jpg"></div>
+    <div class="slide"><img src="ea7.jpg"></div>
+    <div class="slide"><img src="ea8.jpg"></div>
+
+    <div class="overlay"></div>
+
+    <!-- 箭頭 -->
+    <div class="arrow left" onclick="prev()">‹</div>
+    <div class="arrow right" onclick="next()">›</div>
+
+    <!-- dots -->
+    <div class="dots">
+        <span class="dot active" onclick="go(0)"></span>
+        <span class="dot" onclick="go(1)"></span>
+        <span class="dot" onclick="go(2)"></span>
+        <span class="dot" onclick="go(3)"></span>
+        <span class="dot" onclick="go(4)"></span>
+        <span class="dot" onclick="go(5)"></span>
+        <span class="dot" onclick="go(6)"></span>
+        <span class="dot" onclick="go(7)"></span>
+    </div>
+
+</div>
+
+<a href="index.html" class="back-btn">← 回到作品集</a>
+
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+
+function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+}
+
+function next() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}
+
+function prev() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+}
+
+function go(i) {
+    index = i;
+    showSlide(index);
+}
+
+/* 自動播放 */
+setInterval(next, 5000);
+
+/* 手機滑動 */
+let startX = 0;
+
+document.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) next();
+    if (endX - startX > 50) prev();
+});
+</script>
+
+</body>
+</html>
