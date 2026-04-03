@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Top Secret File</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+}
+
+/* 🔒 開場畫面 */
+.lock-screen {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  cursor: pointer;
+}
+
+/* 第一張封面 */
+.cover-img {
+  width: 600px;
+  max-width: 85%;
+  transition: 0.6s;
+}
+
+/* 第二張文件 */
+.file-img {
+  width: 600px;
+  max-width: 85%;
+  display: none;
+}
+
+/* Hover 微動 */
+.lock-screen:hover .cover-img {
+  transform: scale(1.05);
+}
+
+/* 解鎖動畫 */
+.open {
+  animation: openFile 1s forwards;
+}
+
+@keyframes openFile {
+  to {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* 主內容 */
+.main {
+  opacity: 0;
+  transition: 1s;
+}
+
+.main.show {
+  opacity: 1;
+}
+
+/* 背景 */
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url("stamp.jpg") center top / contain no-repeat;
+  background-color: #bfa77a;
+  z-index: -2;
+  transition: opacity 0.3s;
+}
+
+/* 漸淡 */
+.fade-mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 40%,
+    rgba(0,0,0,0.9) 85%,
+    black 100%
+  );
+  z-index: -1;
+}
+
+/* 內容 */
+.content {
+  max-width: 900px;
+  margin: auto;
+  padding: 120px 20px;
+}
+
+h1 {
+  font-size: 32px;
+  border-bottom: 2px solid white;
+  display: inline-block;
+}
+
+.text-box {
+  background: rgba(0,0,0,0.55);
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 20px;
+  line-height: 1.8;
+}
+
+/* 影片 */
+.video-section {
+  margin-top: -200px;
+  padding: 120px 20px 80px;
+  text-align: center;
+  background: black;
+}
+
+iframe {
+  width: 90%;
+  max-width: 900px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  border: 1px solid white;
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+}
+
+.back-btn:hover {
+  background: white;
+  color: black;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🔥 開場 -->
+<div class="lock-screen" id="lock">
+
+  <!-- 第一層 -->
+  <img src="topsecret.jpg" class="cover-img" id="cover">
+
+  <!-- 第二層 -->
+  <img src="stamp.jpg" class="file-img" id="file">
+
+</div>
+
+<!-- 主內容 -->
+<div class="main" id="main">
+
+  <div class="background" id="bg"></div>
+  <div class="fade-mask"></div>
+
+  <div class="content">
+    <h1>
+      師大社團短影音競賽：<br>
+      Top Secret File #1：土司的職涯秘密
+    </h1>
+
+    <div class="text-box">
+      設計作品前，我們詢問曾經是TOASTMASTERS社員、並已進入職場的受訪者，他們在社團內學到什麼事，得以在職場上一帆風順？也詢問非社團人，覺得在職場內應該具備什麼技能？交叉比對後，發現有85%的人都重視溝通、領導、成長。<br><br>
+
+      於是設計「重視溝通、領導、成長」為TOASTMASTERS的社團法寶，擁有法寶的人能獲得職場上的成功。影片開始由神秘潛入者，妄想拿到社團的法寶就可以獲得職場上的成功，但潛入者不小心被社員發現，於是開啟一連串歡樂的奇妙體驗。<br><br>
+
+      最終潛入者不忍心把法寶帶走，因為待在社團裡就是最珍貴的，並邀請BOSS一起加入。
+    </div>
+  </div>
+
+  <!-- 🎬 影片 -->
+  <div class="video-section">
+    <iframe 
+      src="https://drive.google.com/file/d/1_7pjKLgdZYyzmEF5hJdd0dq6lmvA781Q/preview"
+      allow="autoplay">
+    </iframe>
+
+    <br>
+    <a href="index.html" class="back-btn">回到作品集</a>
+  </div>
+
+</div>
+
+<script>
+const lock = document.getElementById("lock");
+const cover = document.getElementById("cover");
+const file = document.getElementById("file");
+const main = document.getElementById("main");
+const bg = document.getElementById("bg");
+
+/* 🔥 點擊流程 */
+lock.addEventListener("click", () => {
+
+  // 1️⃣ 隱藏封面
+  cover.style.display = "none";
+
+  // 2️⃣ 顯示文件
+  file.style.display = "block";
+
+  // 3️⃣ 動畫
+  setTimeout(() => {
+    file.classList.add("open");
+  }, 100);
+
+  // 4️⃣ 進入內容
+  setTimeout(() => {
+    lock.style.display = "none";
+    main.classList.add("show");
+  }, 900);
+});
+
+/* 滾動淡出 */
+window.addEventListener("scroll", () => {
+  let scroll = window.scrollY;
+  let opacity = 1 - scroll / 800;
+  if (opacity < 0.2) opacity = 0.2;
+  bg.style.opacity = opacity;
+});
+</script>
+
+</body>
+</html>
