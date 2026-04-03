@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Personal Shorts</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+}
+
+/* ===== HERO（加入背景圖）===== */
+.hero {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    overflow: hidden;
+}
+
+/* ⭐ 背景圖 */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("art.jpg") center/cover no-repeat;
+    filter: blur(6px) brightness(0.6);
+    transform: scale(1.1); /* 防止blur邊緣 */
+}
+
+/* ⭐ 漸層疊加（讓文字更清楚） */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.85)
+    );
+}
+
+/* 文字 */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+}
+
+.hero h1 {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    line-height: 1.9;
+    color: #ddd;
+    font-size: 15px;
+}
+
+/* ===== SECTION ===== */
+.section {
+    padding: 60px 8%;
+}
+
+/* ===== VIDEO CARD ===== */
+.video-card {
+    margin-bottom: 70px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #111;
+    transition: 0.4s;
+}
+
+.video-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* 16:9 */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* 文字 */
+.video-title {
+    padding: 20px;
+    font-size: 15px;
+    line-height: 1.8;
+    background: linear-gradient(to right, #111, #1a1a1a);
+}
+
+.video-title a {
+    color: #aaa;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+/* ===== BACK ===== */
+.back {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.back a {
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.back a:hover {
+    background: #fff;
+    color: #000;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Personal Shorts</h1>
+        <p>
+        我在新加坡的交換小記錄。這兩部影片是輔助我講解報告的內容。<br><br>
+
+        一支介紹新加坡對於綠化的重視，隨處可見刻意經營的自然與城市融合。<br><br>
+
+        另一支則紀錄自己的一天，希望讓學弟妹理解，
+        交換生活可以很簡單，也可以很豐富複雜。<br><br>
+
+        成長不一定只發生在國外，在校園內同樣有許多管道，
+        關鍵在於你選擇如何使用你的時間。
+        </p>
+    </div>
+</section>
+
+<!-- VIDEO -->
+<section class="section">
+
+    <!-- 影片1 -->
+    <div class="video-card">
+        <div class="video-wrapper">
+            <iframe 
+            src="https://drive.google.com/file/d/1v9acDm-snbB71BaAAz90djwFPolBRjiU/preview"
+            allow="autoplay"
+            allowfullscreen>
+            </iframe>
+        </div>
+        <div class="video-title">
+            新加坡城市綠化觀察｜自然與都市的共存
+            <br><br>
+            <a href="https://drive.google.com/file/d/1v9acDm-snbB71BaAAz90djwFPolBRjiU/view" target="_blank">
+            👉 若無法播放，點此開啟影片
+            </a>
+        </div>
+    </div>
+
+    <!-- 影片2 -->
+    <div class="video-card">
+        <div class="video-wrapper">
+            <iframe 
+            src="https://drive.google.com/file/d/1zpUZJ6ZNhuCBa9r-1PZ2vVqU0Awt5bAj/preview"
+            allow="autoplay"
+            allowfullscreen>
+            </iframe>
+        </div>
+        <div class="video-title">
+            交換生的一天｜生活選擇與成長方式
+            <br><br>
+            <a href="https://drive.google.com/file/d/1zpUZJ6ZNhuCBa9r-1PZ2vVqU0Awt5bAj/view" target="_blank">
+            👉 若無法播放，點此開啟影片
+            </a>
+        </div>
+    </div>
+
+    <!-- 回首頁 -->
+    <div class="back">
+        <a href="index.html">← 回到作品集</a>
+    </div>
+
+</section>
+
+</body>
+</html>

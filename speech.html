@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Public Speaking</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+    background: #000;
+}
+
+/* ===== SLIDER ===== */
+.slider {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 上方觸發區（1/3） */
+.top-trigger {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 33%;
+    z-index: 6;
+}
+
+/* slides */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 漸層 */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+}
+
+/* ===== label ===== */
+.info {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: 0.4s;
+    z-index: 5;
+}
+
+.top-trigger:hover + .info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info p {
+    max-width: 900px;
+    margin: auto;
+    color: #fff;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+/* ===== arrows ===== */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 22px;
+}
+
+.left { left: 30px; }
+.right { right: 30px; }
+
+/* ===== dots ===== */
+.dots {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    background: #888;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #fff;
+}
+
+/* ===== 回首頁 ===== */
+.back-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 20;
+
+    padding: 12px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+
+    background: rgba(255,255,255,0.9);
+    color: #000;
+
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #fff;
+    transform: translateY(-3px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="slider">
+
+    <!-- 上方觸發區 -->
+    <div class="top-trigger"></div>
+
+    <!-- label -->
+    <div class="info">
+        <p>
+            新加坡交換經驗分享｜內容統籌與公眾演說。<br><br>
+            資訊整合與策展：主動統整於新加坡管理大學（SMU）的跨文化觀察與學習經驗，
+            並受邀進行 3 場正式經驗分享會，累計 100+ 名受眾。
+        </p>
+    </div>
+
+    <!-- slides（7張） -->
+    <div class="slide active"><img src="speech1.jpg"></div>
+    <div class="slide"><img src="speech2.jpg"></div>
+    <div class="slide"><img src="speech3.jpg"></div>
+    <div class="slide"><img src="speech4.jpg"></div>
+    <div class="slide"><img src="speech5.jpg"></div>
+    <div class="slide"><img src="speech6.jpg"></div>
+    <div class="slide"><img src="speech7.jpg"></div>
+
+    <div class="overlay"></div>
+
+    <!-- arrows -->
+    <div class="arrow left" onclick="prev()">‹</div>
+    <div class="arrow right" onclick="next()">›</div>
+
+    <!-- dots（7個） -->
+    <div class="dots">
+        <span class="dot active" onclick="go(0)"></span>
+        <span class="dot" onclick="go(1)"></span>
+        <span class="dot" onclick="go(2)"></span>
+        <span class="dot" onclick="go(3)"></span>
+        <span class="dot" onclick="go(4)"></span>
+        <span class="dot" onclick="go(5)"></span>
+        <span class="dot" onclick="go(6)"></span>
+    </div>
+
+</div>
+
+<a href="index.html" class="back-btn">← 回到作品集</a>
+
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+
+function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+}
+
+function next() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}
+
+function prev() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+}
+
+function go(i) {
+    index = i;
+    showSlide(index);
+}
+
+/* 自動播放 */
+setInterval(next, 5000);
+
+/* 手機滑動 */
+let startX = 0;
+
+document.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) next();
+    if (endX - startX > 50) prev();
+});
+</script>
+
+</body>
+</html>
