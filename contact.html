@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>聯絡資訊 | Peggy Ho</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+/* ===== HERO ===== */
+.hero {
+  height: 55vh;
+  background-image: url("contact.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 遮罩 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* 漸淡到底部 */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #f5f5f5 100%);
+}
+
+/* 文字 */
+.hero-text {
+  position: relative;
+  color: white;
+  text-align: center;
+  max-width: 700px;
+  padding: 0 20px;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ===== container ===== */
+.container {
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+/* ===== grid ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+
+/* ===== section ===== */
+.contact-item {
+  position: relative;
+}
+
+.contact-title {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+/* 分隔線 */
+.contact-item::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #333;
+  margin-bottom: 14px;
+}
+
+.contact-content {
+  font-size: 18px;
+  color: #111;
+  line-height: 1.6;
+  transition: 0.3s;
+}
+
+/* hover */
+.contact-content:hover {
+  opacity: 0.6;
+}
+
+/* email 可點擊 */
+.copy-email {
+  cursor: pointer;
+}
+
+/* 提示文字 */
+.copy-msg {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* link */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== back ===== */
+.back {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.back a {
+  border: 1px solid #333;
+  padding: 10px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #333;
+  transition: 0.3s;
+}
+
+.back a:hover {
+  background: #333;
+  color: white;
+}
+
+/* ===== RWD ===== */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 26px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>Contact Me</h1>
+    <p>想聽我分享更多精彩的故事，請聯繫我</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="container">
+
+  <div class="contact-grid">
+
+    <!-- Email（可複製） -->
+    <div class="contact-item">
+      <div class="contact-title">聯絡信箱</div>
+      <div class="contact-content copy-email" onclick="copyEmail()">
+        phappiness0110@gmail.com
+        <span id="copyMsg" class="copy-msg"></span>
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="contact-item">
+      <div class="contact-title">聯絡電話</div>
+      <div class="contact-content">
+        <a href="tel:+886905190661">
+          (+886) 905-190-661
+        </a>
+      </div>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="contact-item">
+      <div class="contact-title">LinkedIn</div>
+      <div class="contact-content">
+        <a href="https://www.linkedin.com/in/品儀-何-b35720360" target="_blank">
+          www.linkedin.com/in/品儀-何
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- back -->
+  <div class="back">
+    <a href="index.html">回到作品集</a>
+  </div>
+
+</div>
+
+<!-- JS -->
+<script>
+function copyEmail() {
+  const email = "phappiness0110@gmail.com";
+
+  navigator.clipboard.writeText(email).then(() => {
+    const msg = document.getElementById("copyMsg");
+    msg.innerText = "已複製！";
+
+    setTimeout(() => {
+      msg.innerText = "";
+    }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>

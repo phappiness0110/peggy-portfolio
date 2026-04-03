@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Find Youth, Find Yourself</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🔥 背景 */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 120%;
+  background: url("find.jpg") center / cover no-repeat;
+  z-index: -3;
+  opacity: 1;
+  transform: translateY(0px);
+  transition: 0.1s linear;
+}
+
+/* 🔥 blur */
+.blur-layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(0px);
+  z-index: -2;
+  transition: 0.1s linear;
+}
+
+/* 🔥 漸淡 */
+.fade-layer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.85),
+    black
+  );
+  z-index: -1;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 8%;
+}
+
+.hero h1 {
+  font-size: 52px;
+  line-height: 1.2;
+}
+
+/* 內容 */
+.section {
+  max-width: 900px;
+  margin: auto;
+  padding: 100px 20px;
+}
+
+.title {
+  font-size: 32px;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.text-box {
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 12px;
+  line-height: 1.9;
+}
+
+/* 🎬 影片 */
+.video-section {
+  margin-top: -150px;
+  padding: 120px 20px;
+  text-align: center;
+  background: black;
+}
+
+iframe {
+  width: 90%;
+  max-width: 900px;
+  height: 500px;
+  border-radius: 12px;
+  border: none;
+}
+
+/* 返回 */
+.back-btn {
+  margin-top: 40px;
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1px solid white;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: white;
+  color: black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg" id="bg"></div>
+<div class="blur-layer" id="blur"></div>
+<div class="fade-layer"></div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>
+    Find Youth<br>
+    Find Yourself
+  </h1>
+</div>
+
+<!-- 內容 -->
+<div class="section">
+  <div class="title">
+    學系介紹拍片比賽: Find Youth, Find Yourself
+  </div>
+
+  <div class="text-box">
+    這不僅是一部學系宣傳片，更是一部關於「視野覺醒」的紀錄。我們將東亞系的跨領域學術，轉化為主角眼中逐漸清晰的求學地圖，提升受眾對於系所的了解程度。
+    <br><br>
+    同理目標客群高中生對未來出路的迷茫，以「你以後要做什麼？」為策略切入點；針對目標受眾好奇的上課內容，設計「實地參訪」與「學術報告」等具體場景。
+    <br><br>
+    於官方 YouTube 獲得 1000+ 次觀看，並榮獲佳作。
+  </div>
+</div>
+
+<!-- 🎬 影片 -->
+<div class="video-section">
+  <iframe 
+    src="https://drive.google.com/file/d/1nHggxUi_MHaJTGrud85ys9-KDYsGMDVD/preview"
+    allow="autoplay">
+  </iframe>
+
+  <br>
+  <a href="index.html" class="back-btn">回到作品集</a>
+</div>
+
+<script>
+const bg = document.getElementById("bg");
+const blur = document.getElementById("blur");
+
+window.addEventListener("scroll", () => {
+  let scrollY = window.scrollY;
+
+  /* 淡出 */
+  let opacity = 1 - scrollY / 600;
+  bg.style.opacity = opacity < 0 ? 0 : opacity;
+
+  /* 下沉 */
+  bg.style.transform = `translateY(${scrollY * 0.3}px)`;
+
+  /* 模糊 */
+  let blurValue = scrollY / 80;
+  blur.style.backdropFilter = `blur(${blurValue}px)`;
+});
+</script>
+
+</body>
+</html>
